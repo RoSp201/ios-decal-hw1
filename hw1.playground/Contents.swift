@@ -22,11 +22,12 @@ class Words {
 //: ### variables the same type? If not, why?
 
 
-//: [EXPLAIN YOUR ANSWER HERE]
+//: Both are of optional String type. The ? is used to declare an optional whereas a ! is used to forcefully unsafely unwrap an optional.
+//: An optional will return either a valid value that has been assigned to it or the value "nil".  The ! can be dangerous if the optional has not been initialized because it may cause a compiler error.
 
 
 //: ## Q2: Variable Types and Function Types
-    func arePalindromes(_ words: [String]) -> Bool {
+    class func arePalindromes(_ words: [String]) -> Bool {
         let reversedWords = words.map() {String($0.characters.reversed())}
         let numElements = words.count
         
@@ -35,20 +36,21 @@ class Words {
                 return false
             }
         }
+        return true
     }
 //: ### Why does the compiler dislike the **for loop**? Fix it.
 //: ### What else is wrong with this function? You may have to refer to (but **not**
 //: ### change) the code at the very bottom. Debug the function.
 
 
-//: [EXPLAIN YOUR ANSWER HERE]
+//: If this code reaches the end of the for loop, it will return nothing, when the function declaration clearly states that it should return a Bool type.  This can be fixed by adding in a return true at the end of the function codeblock.  Also the keyword class should be added to the front of func so that it can be used as a class value instead of a class instance of the method.
 
 
 //: ## Q3: More Functions and Object Initialization
-    class func isAnagram() -> Bool {
-        var countLetters : [Character : Int] //Line X
-        var lenA = self.wordA.characters.count
-        var lenB = self.wordB.characters.count
+    func isAnagram() -> Bool {
+        var countLetters = [Character : Int]() //Line X
+        let lenA = self.wordA.characters.count
+        let lenB = self.wordB.characters.count
         
         if lenA != lenB {
             return false
@@ -75,13 +77,13 @@ class Words {
             }
         }
         
-        for (letter, count) in countLetters {
+        for (_, count) in countLetters {
             if count != 0 {
                 return false
             }
         }
         
-        return nil
+        return true
     }
 //: ### What is the problem with declaring **countLetters** as we do in **Line X**,
 //: ### and then using it in **Line Y**? Fix it (by only changing **Line X**).
@@ -89,7 +91,7 @@ class Words {
 //: ### change) the code at the very bottom. Debug the function.
 
 
-//: [EXPLAIN YOUR ANSWER HERE]
+//: The problem that occurs with declaring countLetters as is done in line X is that the dictionary needs to be initiatied with empty values.  To fix the problem, add () at the end of the line. Also, change the variables lenA and lenB to constants by replacing the keyword var with let. Add a return true statement to the end of the function definition. Replace letter in the last loop with _ to avoid the compiler warning.
     
     
 }
